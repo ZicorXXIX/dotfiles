@@ -1,0 +1,97 @@
+@import url("file:///home/zicor/.cache/wal/colors-waybar.css");
+
+* {
+    border: none;
+    font-family: Font Awesome, JetBrainsMono;
+    font-size: 13px;
+    color: @foreground;
+    border-radius: 20px;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/*-----module groups----*/
+.modules-right,
+.modules-center {
+    background-color: rgba(0, 0, 0, 0.85); /* Semi-transparent overlay */
+    margin-top: 2px;
+}
+
+.modules-right {
+    margin-right: 10px;
+}
+
+.modules-center {
+    margin-left: 0;
+}
+
+.modules-left {
+    margin: 2px 0 0 5px;
+    background-color: @color0;
+}
+
+/*-----modules indv----*/
+#workspaces button {
+    padding: 1px 5px;
+    background-color: transparent;
+}
+
+#workspaces button:hover,
+#workspaces button.focused {
+    background-color: #D13227;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#custom-power,
+#custom-menu,
+#custom-battery,
+#custom-updates,
+#custom-lock,
+#idle_inhibitor {
+    padding: 0 10px;
+}
+
+#cpu span {
+    color: @color1;
+}
+
+#mode {
+    color: @color1;
+    font-weight: bold;
+}
+
+#custom-power {
+    background-color: @color0;
+    border-radius: 100px;
+    margin: 5px;
+    padding: 1px 1px 1px 6px;
+}
+
+/*-----Indicators----*/
+#idle_inhibitor.activated {
+    color: @color2;
+}
+#pulseaudio.muted {
+    color: @color1;
+}
+#battery.charging {
+    color: @color2;
+}
+#battery.warning:not(.charging) {
+    color: @color3;
+}
+#battery.critical:not(.charging),
+#temperature.critical {
+    color: @color1;
+}

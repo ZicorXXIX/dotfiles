@@ -1,1 +1,17 @@
-../../scripts/tmux-sessionizer
+#!/usr/bin/env bash
+session=$(find ~ . ~/personal ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+session_name=$(basename "$session" | tr . _)
+#tr replaces and . in session_name to the corresponding in this case _
+
+# Already in the session — open a new window in same session
+current_session=$(tmux display-message -p '#S' 2>/dev/null)
+if [[ "$current_session" == "$session_name" ]]; then
+    tmux new-window -c "$session"
+fi
+    #when it cant find session it prints can find to std err so we pipe it to
+    #/dev/null which means garbage can
+if ! tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux new-session -s "$session_name" -c "$session" -d
+fi
+
+tmux switch-client -t "$session_name"

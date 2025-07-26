@@ -1,0 +1,186 @@
+/* Berserk Theme for Wofi - Dark Medieval Style */
+
+* {
+    font-family: "JetbrainsMono Nerd Font", monospace;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Main window - no search bar version */
+window {
+    background: linear-gradient(135deg, #1a0d0d 0%, #2d1b1b 50%, #1a0d0d 100%);
+    border: 2px solid #7c2d2d;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+    opacity: 0.98;
+}
+
+/* Outer box */
+#outer-box {
+    background: transparent;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+/* Hide input/search bar */
+#input {
+    background: transparent;
+    border: none;
+    color: transparent;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+
+/* For password dialogs only */
+window.password #input {
+    background: linear-gradient(135deg, #0f0606 0%, #1a0d0d 100%);
+    border: 2px solid #7c2d2d;
+    border-radius: 6px;
+    color: #fbf1c7;
+    padding: 8px 12px;
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    caret-color: #cc241d;
+    min-height: 20px;
+}
+
+window.password #input:focus {
+    border-color: #cc241d;
+    box-shadow: 0 0 12px rgba(204, 36, 29, 0.4);
+    outline: none;
+}
+
+/* Scrolled window */
+#scroll {
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+}
+
+/* Inner box containing entries */
+#inner-box {
+    background: transparent;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+/* Individual entries */
+#entry {
+    background: rgba(26, 13, 13, 0.6);
+    border: 1px solid rgba(124, 45, 45, 0.3);
+    border-radius: 4px;
+    color: #d4be98;
+    padding: 8px 12px;
+    margin: 2px 0;
+    transition: all 0.2s ease;
+}
+
+/* Entry hover state */
+#entry:hover {
+    background: linear-gradient(90deg, rgba(124, 45, 45, 0.4) 0%, rgba(204, 36, 29, 0.3) 100%);
+    border-color: #cc241d;
+    color: #fbf1c7;
+    box-shadow: 0 2px 8px rgba(204, 36, 29, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Selected/focused entry */
+#entry:selected, #entry:focus {
+    background: linear-gradient(90deg, #7c2d2d 0%, #cc241d 100%);
+    border-color: #fb4934;
+    color: #fbf1c7;
+    box-shadow: 0 0 15px rgba(204, 36, 29, 0.5);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Text within entries */
+#text {
+    color: inherit;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Entry text on hover */
+#entry:hover #text {
+    color: #fbf1c7;
+}
+
+/* Selected entry text */
+#entry:selected #text, #entry:focus #text {
+    color: #fbf1c7;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Separator styling */
+#entry:nth-child(4) {
+    background: linear-gradient(90deg, #7c2d2d 0%, #cc241d 50%, #7c2d2d 100%);
+    color: #cc241d;
+    border-color: #cc241d;
+    padding: 2px;
+    margin: 6px 0;
+    font-weight: bold;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* Current network indicator (entries with ⚔️) */
+#entry #text:first-child {
+    color: inherit;
+}
+
+#entry:has(#text[text*="⚔️"]) {
+    background: linear-gradient(90deg, rgba(204, 36, 29, 0.3) 0%, rgba(251, 73, 52, 0.2) 100%);
+    border-color: #fb4934;
+    animation: pulse-current 3s ease-in-out infinite;
+}
+
+/* Control entries styling */
+#entry:has(#text[text*="🔄"]), 
+#entry:has(#text[text*="📡"]),
+#entry:has(#text[text*="⚙️"]) {
+    background: linear-gradient(90deg, rgba(142, 192, 124, 0.1) 0%, rgba(131, 165, 152, 0.1) 100%);
+    border-color: #83a598;
+}
+
+#entry:has(#text[text*="🔄"]):hover,
+#entry:has(#text[text*="📡"]):hover,
+#entry:has(#text[text*="⚙️"]):hover {
+    background: linear-gradient(90deg, rgba(142, 192, 124, 0.2) 0%, rgba(131, 165, 152, 0.2) 100%);
+    border-color: #8ec07c;
+    color: #fbf1c7;
+}
+
+/* Scrollbar styling */
+scrollbar {
+    background: rgba(26, 13, 13, 0.8);
+    border-radius: 4px;
+    border: 1px solid #7c2d2d;
+}
+
+scrollbar slider {
+    background: linear-gradient(135deg, #7c2d2d 0%, #cc241d 100%);
+    border-radius: 4px;
+    border: none;
+    min-height: 20px;
+}
+
+scrollbar slider:hover {
+    background: linear-gradient(135deg, #cc241d 0%, #fb4934 100%);
+    box-shadow: 0 0 8px rgba(204, 36, 29, 0.5);
+}
+
+/* Animation for current network */
+@keyframes pulse-current {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(204, 36, 29, 0.3);
+        border-color: #fb4934;
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(251, 73, 52, 0.5);
+        border-color: #cc241d;
+    }
+}

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Path to hyprpaper config
+CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+
+# Extract the wallpaper path from the first 'wallpaper =' line
+WALLPAPER=$(grep -E '^wallpaper\s*=' "$CONFIG_FILE" | head -n1 | cut -d',' -f2-)
+
+# Check if we got a valid path
+if [[ -z "$WALLPAPER" ]]; then
+    echo "❌ Could not detect wallpaper from $CONFIG_FILE"
+    exit 1
+fi
+
+# Verify the file exists
+if [[ ! -f "$WALLPAPER" ]]; then
+    echo "❌ Wallpaper file does not exist: $WALLPAPER"
+    exit 1
+fi
+
+echo "🎨 Generating colors from wallpaper: $WALLPAPER"
+
+# Generate pywal colors
+wal -i "$WALLPAPER" --quiet
+
+# Give pywal time to apply changes
+sleep 0.5
+
+# Restart waybar to apply new colors
+pkill -x waybar
+sleep 0.5
+waybar &
+
+exit 0
+

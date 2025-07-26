@@ -1,0 +1,24 @@
+#!/bin/bash
+
+WAL_COLORS="$HOME/.cache/wal/colors.json"
+OUT="$HOME/.config/hypr/pywal-colors.conf"
+
+# extract values from pywal JSON
+if [ -f "$WAL_COLORS" ]; then
+  bg=$(jq -r '.special.background' "$WAL_COLORS")
+  fg=$(jq -r '.special.foreground' "$WAL_COLORS")
+  col0=$(jq -r '.colors.color0' "$WAL_COLORS")
+  col1=$(jq -r '.colors.color1' "$WAL_COLORS")
+  col2=$(jq -r '.colors.color2' "$WAL_COLORS")
+  col3=$(jq -r '.colors.color3' "$WAL_COLORS")
+
+  cat > "$OUT" <<EOF
+\$bg = rgba(${bg:1}ee)
+\$fg = rgba(${fg:1}ff)
+\$col0 = rgba(${col0:1}ff)
+\$col1 = rgba(${col1:1}ff)
+\$col2 = rgba(${col2:1}ff)
+\$col3 = rgba(${col3:1}ff)
+EOF
+fi
+
