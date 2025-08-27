@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-session=$(find ~ . ~/personal ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+session=$(find ~ . ~/personal ~/.config /run/media/zicor/New\ Volume/ -mindepth 1 -maxdepth 1 -type d | fzf)
 session_name=$(basename "$session" | tr . _)
 #tr replaces and . in session_name to the corresponding in this case _
 

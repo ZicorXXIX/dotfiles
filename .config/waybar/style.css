@@ -40,7 +40,12 @@ window#waybar {
 
 #workspaces button:hover,
 #workspaces button.focused {
-    background-color: #D13227;
+    /* background-color: #D13227; */
+    background-color: @color3;
+}
+
+#workspaces button.active {
+    background-color: @color3;
 }
 
 #clock,
